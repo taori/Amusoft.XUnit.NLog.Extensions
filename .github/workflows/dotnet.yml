@@ -57,7 +57,7 @@ jobs:
               @("versionSuffix","${{ steps.defaults.outputs.versionSuffix }}", "beta"),
               @("nugetRelease","${{ steps.defaults.outputs.nugetRelease }}", "1"),
               @("verbosity","${{ steps.defaults.outputs.verbosity }}", "minimal"),
-              @("configuration","${{ steps.defaults.outputs.configuration }}", "Release"),
+              @("configuration","${{ steps.defaults.outputs.configuration }}", "Release")
             )
             
           foreach($pair in $values){
