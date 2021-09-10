@@ -39,9 +39,48 @@ on:
         default: 'Release'
 
 jobs:
+  environment : 
+    runs-on: ubuntu-latest
+    
+    outputs:      
+      versionSuffix : ${{ steps.defaults.outputs.versionSuffix }}
+      nugetRelease : ${{ steps.defaults.outputs.nugetRelease }}
+      verbosity : ${{ steps.defaults.outputs.verbosity }}
+      configuration : ${{ steps.defaults.outputs.configuration }}
+
+    steps:
+      - name: declare default values 
+        id: defaults
+        shell: pwsh   
+        run: |
+          $values = @(
+              @("versionSuffix","${{ steps.defaults.outputs.versionSuffix }}", "beta"),
+              @("nugetRelease","${{ steps.defaults.outputs.nugetRelease }}", "1"),
+              @("verbosity","${{ steps.defaults.outputs.verbosity }}", "minimal"),
+              @("configuration","${{ steps.defaults.outputs.configuration }}", "Release"),
+            )
+            
+          foreach($pair in $values){
+            $value = $pair[1]
+            if([string]::IsNullOrEmpty("$value") -eq $true){
+                    $value = $pair[2]
+            }
+            
+            Write-Host "Assigning $($pair[0]) => $value"
+
+            echo "::set-output name=$($pair[0])::$value"
+          }
+    
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    
+    needs: environment
+    
+    env:      
+      versionSuffix : ${{needs.environment.outputs.versionSuffix}}
+      nugetRelease : ${{needs.environment.outputs.nugetRelease}}
+      verbosity : ${{needs.environment.outputs.verbosity}}
+      configuration : ${{needs.environment.outputs.configuration}}
 
     steps:
     - uses: actions/checkout@v2
@@ -50,6 +89,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
         
+    - name: stop
+      run: exit 1
     - name: Restore dependencies
       run: dotnet restore src/All.sln
     - name: Build
