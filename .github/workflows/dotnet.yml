@@ -55,10 +55,10 @@ jobs:
         run: |
         
           $values = @(
-              @("versionSuffix", $false,"${{ github.event.inputs.versionSuffix }}", "beta"),
-              @("nugetRelease", $true,"${{ github.event.inputs.nugetRelease }}", "1"),
-              @("verbosity", $true,"${{ github.event.inputs.verbosity }}", "minimal"),
-              @("configuration", $true,"${{ github.event.inputs.configuration }}", "Release")
+              @("versionSuffix", $false, "${{ github.event.inputs.versionSuffix }}", "beta"),
+              @("nugetRelease", $true, "${{ github.event.inputs.nugetRelease }}", "1"),
+              @("verbosity", $true, "${{ github.event.inputs.verbosity }}", "minimal"),
+              @("configuration", $true, "${{ github.event.inputs.configuration }}", "Release")
             )
             
           foreach($pair in $values){
