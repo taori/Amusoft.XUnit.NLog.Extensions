@@ -4,6 +4,7 @@ on:
   push:
     branches: [ master ]
     paths: 
+      - .github/workflows/*
       - src/*
       - tests/*
       
@@ -53,9 +54,10 @@ jobs:
         id: defaults
         shell: pwsh
         env:
-          isDispatch: ${{ github.event_name }}
+          isDispatch: "${{ github.event_name }}"
         run: |
-          Write-Host "IsDispatch: $isDispatch"
+          $dispatch = $GITHUB_EVENT_NAME -eq "workflow_dispatch"
+          Write-Host "IsDispatch: $dispatch"
           #== 'workflow_dispatch'
           
           $values = @(
