@@ -56,12 +56,9 @@ jobs:
         env:
           isDispatch: "${{ github.event_name }}"
         run: |
-          $dispatch = $GITHUB_EVENT_NAME -eq "workflow_dispatch"
-          Write-Host "IsDispatch: $dispatch"
-          #== 'workflow_dispatch'
           
           $values = @(
-              @("versionSuffix", $false, "${{ github.event.inputs.versionSuffix }}", "beta"),
+              @("versionSuffix", $GITHUB_EVENT_NAME -neq "workflow_dispatch", "${{ github.event.inputs.versionSuffix }}", "beta"),
               @("nugetRelease", $true, "${{ github.event.inputs.nugetRelease }}", "1"),
               @("verbosity", $true, "${{ github.event.inputs.verbosity }}", "minimal"),
               @("configuration", $true, "${{ github.event.inputs.configuration }}", "Release")
