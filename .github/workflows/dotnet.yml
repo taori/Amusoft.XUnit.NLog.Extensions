@@ -89,8 +89,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
         
-    - name: stop
-      run: exit 1
+    #- name: stop
+    #  run: exit 1
     - name: Restore dependencies
       run: dotnet restore src/All.sln
     - name: Build
