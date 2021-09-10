@@ -63,7 +63,7 @@ jobs:
             
           foreach($pair in $values){
             $value = $pair[2]
-            if($pair[1] -And [string]::IsNullOrEmpty("$value") -eq $true){
+            if($pair[1] -eq $true -And [string]::IsNullOrEmpty("$value") -eq $true){
                     $value = $pair[3]
             }
             
@@ -71,6 +71,8 @@ jobs:
 
             echo "::set-output name=$($pair[0])::$value"
           }
+      - name: stop
+        run: exit 1
     
   build:
 
