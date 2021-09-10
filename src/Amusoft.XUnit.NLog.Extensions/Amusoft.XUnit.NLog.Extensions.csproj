@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+
+		<TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+		<VersionPrefix>2.4.0</VersionPrefix>
+		<VersionSuffix>beta</VersionSuffix>
+		<IsPackable>true</IsPackable>
+
+		<Copyright>Copyright © Andreas Müller 2021</Copyright>
+		<PackageId>Amusoft.XUnit.NLog.Extensions</PackageId>
+		<Authors>Andreas Müller</Authors>
+		<Product>Amusoft.XUnit.NLog.Extensions</Product>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/taori/Amusoft.XUnit.NLog.Extensions.git</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/taori/Amusoft.XUnit.NLog.Extensions</PackageProjectUrl>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NLog" Version="4.7.0" />
+		<PackageReference Include="xunit" Version="2.4.0" />
+	</ItemGroup>
+</Project>

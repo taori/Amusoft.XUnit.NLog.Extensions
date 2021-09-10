@@ -1,0 +1,66 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+    paths: 
+      - src/*
+      - tests/*
+      
+  pull_request:
+    branches: [ master ]
+    types: 
+      - opened
+      - reopened
+      - synchronize 
+      
+  workflow_dispatch:
+  
+    inputs:   
+    
+      versionSuffix:
+        required: true
+        description: "Version suffix for nupkg"
+        default: 'beta'
+        
+      nugetRelease:
+        required: true
+        description: "nuget release? (1/0)"
+        default: '0'
+        
+      verbosity:
+        required: true
+        description: "verbosity of pipeline output"
+        default: 'minimal'
+        
+      configuration:
+        required: true
+        description: "Configuration for builds"
+        default: 'Release'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore src/All.sln
+    - name: Build
+      run: dotnet build src/All.sln --verbosity ${{ github.event.inputs.verbosity }} -c ${{ github.event.inputs.configuration }} --no-restore 
+    - name: Test
+      run: dotnet test src/All.sln --verbosity ${{ github.event.inputs.verbosity }} -c ${{ github.event.inputs.configuration }} --no-build 
+    - name: Pack
+      run: dotnet pack src/Amusoft.XUnit.NLog.Extensions/Amusoft.XUnit.NLog.Extensions.csproj --verbosity ${{ github.event.inputs.verbosity }} -c ${{ github.event.inputs.configuration }} -o artifacts/nupkg --no-build /p:VersionSuffix=${{ github.event.inputs.versionSuffix }}
+    
+    - name: Release
+      run: dotnet nuget push "artifacts/nupkg/*.nupkg" -k $NUGETKEY -s https://api.nuget.org/v3/index.json
+      if: ${{ github.event.inputs.nugetRelease == '1' }}
+      env:
+        NUGETKEY: ${{ secrets.NUGET }}
