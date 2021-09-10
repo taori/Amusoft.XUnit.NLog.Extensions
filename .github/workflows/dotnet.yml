@@ -57,11 +57,17 @@ jobs:
           isDispatch: "${{ github.event_name }}"
         run: |
           
+          $vals = @($GITHUB_EVENT_NAME -ne "workflow_dispatch",
+            "$GITHUB_EVENT_NAME" -ne "workflow_dispatch")
+          Write-Host "eventValues: $vals"
+          
           $setDefaultForSuffix = $GITHUB_EVENT_NAME -ne "workflow_dispatch"
           Write-Host "setDefaultForSuffix: $setDefaultForSuffix"
+          Write-Host "1: $($GITHUB_EVENT_NAME -ne "workflow_dispatch")"
+          Write-Host "2: $($GITHUB_EVENT_NAME -ne "workflow_dispatch")"
           
           $values = @(
-              @("versionSuffix", "$GITHUB_EVENT_NAME" -ne "workflow_dispatch", "${{ github.event.inputs.versionSuffix }}", "beta"),
+              @("versionSuffix", $setDefaultForSuffix, "${{ github.event.inputs.versionSuffix }}", "beta"),
               @("nugetRelease", $true, "${{ github.event.inputs.nugetRelease }}", "1"),
               @("verbosity", $true, "${{ github.event.inputs.verbosity }}", "minimal"),
               @("configuration", $true, "${{ github.event.inputs.configuration }}", "Release")
