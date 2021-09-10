@@ -55,16 +55,16 @@ jobs:
         run: |
         
           $values = @(
-              @("versionSuffix","${{ github.event.inputs.versionSuffix }}", "beta"),
-              @("nugetRelease","${{ github.event.inputs.nugetRelease }}", "1"),
-              @("verbosity","${{ github.event.inputs.verbosity }}", "minimal"),
-              @("configuration","${{ github.event.inputs.configuration }}", "Release")
+              @("versionSuffix", $false,"${{ github.event.inputs.versionSuffix }}", "beta"),
+              @("nugetRelease", $true,"${{ github.event.inputs.nugetRelease }}", "1"),
+              @("verbosity", $true,"${{ github.event.inputs.verbosity }}", "minimal"),
+              @("configuration", $true,"${{ github.event.inputs.configuration }}", "Release")
             )
             
           foreach($pair in $values){
-            $value = $pair[1]
-            if([string]::IsNullOrEmpty("$value") -eq $true){
-                    $value = $pair[2]
+            $value = $pair[2]
+            if($pair[1] -And [string]::IsNullOrEmpty("$value") -eq $true){
+                    $value = $pair[3]
             }
             
             Write-Host "Assigning $($pair[0]) => $value"
