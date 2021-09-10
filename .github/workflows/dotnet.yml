@@ -53,11 +53,12 @@ jobs:
         id: defaults
         shell: pwsh   
         run: |
+        
           $values = @(
-              @("versionSuffix","${{ steps.defaults.outputs.versionSuffix }}", "beta"),
-              @("nugetRelease","${{ steps.defaults.outputs.nugetRelease }}", "1"),
-              @("verbosity","${{ steps.defaults.outputs.verbosity }}", "minimal"),
-              @("configuration","${{ steps.defaults.outputs.configuration }}", "Release")
+              @("versionSuffix","${{ github.event.inputs.versionSuffix }}", "beta"),
+              @("nugetRelease","${{ github.event.inputs.nugetRelease }}", "1"),
+              @("verbosity","${{ github.event.inputs.verbosity }}", "minimal"),
+              @("configuration","${{ github.event.inputs.configuration }}", "Release")
             )
             
           foreach($pair in $values){
