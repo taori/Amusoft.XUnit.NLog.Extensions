@@ -57,10 +57,10 @@ jobs:
           isDispatch: "${{ github.event_name }}"
         run: |
           
-          $vals = @($GITHUB_EVENT_NAME -ne "workflow_dispatch",
-            "$GITHUB_EVENT_NAME" -ne "workflow_dispatch")
+          $vals = @($env:GITHUB_EVENT_NAME -ne "workflow_dispatch",
+            "$env:GITHUB_EVENT_NAME" -ne "workflow_dispatch")
           Write-Host "eventValues: $($vals[0]) $($vals[1])"          
-          Write-Host "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+          Write-Host "GITHUB_EVENT_NAME: $env:GITHUB_EVENT_NAME"
           
           $setDefaultForSuffix = $GITHUB_EVENT_NAME -ne "workflow_dispatch"
           Write-Host "setDefaultForSuffix: $setDefaultForSuffix"
