@@ -19,6 +19,10 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<IsTestProject>false</IsTestProject>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="NLog" Version="4.7.0" />
 		<PackageReference Include="xunit" Version="2.4.0" />
