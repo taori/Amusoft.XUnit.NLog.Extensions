@@ -55,20 +55,12 @@ jobs:
         shell: pwsh
         env:
           isDispatch: "${{ github.event_name }}"
-        run: |
-          
-          $vals = @($env:GITHUB_EVENT_NAME -ne "workflow_dispatch",
-            "$env:GITHUB_EVENT_NAME" -ne "workflow_dispatch")
-          Write-Host "eventValues: 0: $($vals[0]) 1: $($vals[1])"          
-          Write-Host "GITHUB_EVENT_NAME: $env:GITHUB_EVENT_NAME"
-          
-          $setDefaultForSuffix = $env:GITHUB_EVENT_NAME -ne "workflow_dispatch"
-          Write-Host "setDefaultForSuffix: $setDefaultForSuffix"
-          Write-Host "1: $($GITHUB_EVENT_NAME -ne "workflow_dispatch")"
-          Write-Host "2: $($GITHUB_EVENT_NAME -ne "workflow_dispatch")"
+        run: |        
+          $notManual = "$env:GITHUB_EVENT_NAME" -ne "workflow_dispatch"
+          Write-Host "notManual: $notManual"
           
           $values = @(
-              @("versionSuffix", $setDefaultForSuffix, "${{ github.event.inputs.versionSuffix }}", "beta"),
+              @("versionSuffix", $notManual, "${{ github.event.inputs.versionSuffix }}", "beta"),
               @("nugetRelease", $true, "${{ github.event.inputs.nugetRelease }}", "1"),
               @("verbosity", $true, "${{ github.event.inputs.verbosity }}", "minimal"),
               @("configuration", $true, "${{ github.event.inputs.configuration }}", "Release")
