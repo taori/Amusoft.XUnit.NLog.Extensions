@@ -48,11 +48,15 @@ jobs:
       configuration : ${{ steps.defaults.outputs.configuration }}
 
     steps:
+    
       - name: declare default values 
         id: defaults
-        shell: pwsh   
+        shell: pwsh
+        env:
+          isDispatch: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
-        
+          Write-Host "IsDispatch: $isDispatch"
+          
           $values = @(
               @("versionSuffix", $false, "${{ github.event.inputs.versionSuffix }}", "beta"),
               @("nugetRelease", $true, "${{ github.event.inputs.nugetRelease }}", "1"),
@@ -72,7 +76,8 @@ jobs:
           }
     
   build:
-
+  
+    if: true
     runs-on: ubuntu-latest    
     needs: environment
     
