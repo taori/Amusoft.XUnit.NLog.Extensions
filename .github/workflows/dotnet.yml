@@ -127,13 +127,7 @@ jobs:
       if: ${{ needs.environment.outputs.publishRelease == 'True' }}
       run: find artifacts/nupkg/ -name "*.snupkg" -type f -delete
       
-    - name: Release
-      if: ${{ needs.environment.outputs.publishRelease == 'True' }}
-      run: dotnet nuget push "artifacts/nupkg/*.nupkg" -k $NUGETKEY -s https://api.nuget.org/v3/index.json
-      env:
-        NUGETKEY: ${{ secrets.NUGET }}
-        
-    - name: Remove old releases 
+    - name: Remove old prereleases 
       if: ${{ needs.environment.outputs.publishRelease == 'True' && github.event_name =='workflow_dispatch' && needs.environment.outputs.versionSuffix == ''}}
       id: defaults
       shell: pwsh
@@ -141,4 +135,11 @@ jobs:
         & dotnet tool install --global NugetUnlister
         $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } -ExpandProperty Name -First 1 | Select-String -Pattern "\d[\d\w\.\+-]+(?=.nupkg)" | %{$_.Matches.Value}
         & nuget-unlist drop prereleasebefore Amusoft.XUnit.NLog.Extensions $packageVersion $NUGETKEY
+              
+    - name: Release
+      if: ${{ needs.environment.outputs.publishRelease == 'True' }}
+      run: dotnet nuget push "artifacts/nupkg/*.nupkg" -k $NUGETKEY -s https://api.nuget.org/v3/index.json
+      env:
+        NUGETKEY: ${{ secrets.NUGET }}
+        
         
