@@ -8,10 +8,12 @@
 		<IsPackable>true</IsPackable>
 
 		<Copyright>Copyright © Andreas Müller 2021</Copyright>
+		<Description>Extensions for tests when using xunit</Description>
 		<PackageId>Amusoft.XUnit.NLog.Extensions</PackageId>
 		<Authors>Andreas Müller</Authors>
 		<Product>Amusoft.XUnit.NLog.Extensions</Product>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/taori/Amusoft.XUnit.NLog.Extensions.git</RepositoryUrl>
