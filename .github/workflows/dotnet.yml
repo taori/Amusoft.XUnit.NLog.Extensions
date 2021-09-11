@@ -132,3 +132,13 @@ jobs:
       run: dotnet nuget push "artifacts/nupkg/*.nupkg" -k $NUGETKEY -s https://api.nuget.org/v3/index.json
       env:
         NUGETKEY: ${{ secrets.NUGET }}
+        
+    - name: Remove old releases 
+      if: ${{ needs.environment.outputs.publishRelease == 'True' }}
+      id: defaults
+      shell: pwsh
+      run: |  
+        & dotnet tool install --global NugetUnlister
+        $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } -ExpandProperty Name -First 1 | Select-String -Pattern "\d[\d\w\.\+-]+(?=.nupkg)" | %{$_.Matches.Value}
+        & nuget-unlist drop prereleasebefore Amusoft.XUnit.NLog.Extensions $packageVersion $NUGETKEY
+        
