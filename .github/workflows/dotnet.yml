@@ -123,10 +123,12 @@ jobs:
       if: ${{ needs.environment.outputs.publishRelease == 'True' }}
       run: dotnet pack src/Amusoft.XUnit.NLog.Extensions/Amusoft.XUnit.NLog.Extensions.csproj --verbosity $verbosity -c $configuration -o artifacts/nupkg --no-build /p:VersionSuffix=$versionSuffix
 
+    - name: Remove snupkg
+      run: find . -name "*.snupkg" -type f -delete
+      
     - name: Release
       shell: pwsh
       if: ${{ needs.environment.outputs.publishRelease == 'True' }}
-      run: Get-ChildItem "artifacts/nupkg" -Filter "*.nupkg" | Foreach { dotnet nuget push $_.FullName -k $NUGETKEY -s https://api.nuget.org/v3/index.json --no-symbols true }
-      #run: dotnet nuget push "artifacts/nupkg/*.nupkg" -k $NUGETKEY -s https://api.nuget.org/v3/index.json --no-symbols true
+      run: dotnet nuget push "artifacts/nupkg/*.nupkg" -k $NUGETKEY -s https://api.nuget.org/v3/index.json --no-symbols true
       env:
         NUGETKEY: ${{ secrets.NUGET }}
