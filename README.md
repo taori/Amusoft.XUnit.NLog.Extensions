@@ -1,6 +1,6 @@
 # Amusoft.XUnit.NLog.Extensions
 
-## Project State
+## Project state
 
 [![.GitHub](https://github.com/taori/Amusoft.XUnit.NLog.Extensions/actions/workflows/dotnet.yml/badge.svg)](https://github.com/taori/Amusoft.XUnit.NLog.Extensions/actions/workflows/dotnet.yml)
 [![GitHub issues](https://img.shields.io/github/issues/taori/Amusoft.XUnit.NLog.Extensions)](https://github.com/taori/Amusoft.XUnit.NLog.Extensions/issues)
