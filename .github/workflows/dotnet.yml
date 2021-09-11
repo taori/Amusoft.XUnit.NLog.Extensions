@@ -134,7 +134,7 @@ jobs:
         NUGETKEY: ${{ secrets.NUGET }}
         
     - name: Remove old releases 
-      if: ${{ needs.environment.outputs.publishRelease == 'True' && $github.event_name =='workflow_dispatch' }}
+      if: ${{ needs.environment.outputs.publishRelease == 'True' && github.event_name =='workflow_dispatch' }}
       id: defaults
       shell: pwsh
       run: |  
