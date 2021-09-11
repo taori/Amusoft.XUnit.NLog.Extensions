@@ -17,6 +17,7 @@
 		<RepositoryUrl>https://github.com/taori/Amusoft.XUnit.NLog.Extensions.git</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/taori/Amusoft.XUnit.NLog.Extensions</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
 
 	<PropertyGroup>
