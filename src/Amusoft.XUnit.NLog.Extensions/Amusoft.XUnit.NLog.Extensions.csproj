@@ -8,6 +8,7 @@
 		<IsPackable>true</IsPackable>
 
 		<Copyright>Copyright © Andreas Müller 2021</Copyright>
+		<Description>Extensions for tests when using xunit</Description>
 		<PackageId>Amusoft.XUnit.NLog.Extensions</PackageId>
 		<Authors>Andreas Müller</Authors>
 		<Product>Amusoft.XUnit.NLog.Extensions</Product>
