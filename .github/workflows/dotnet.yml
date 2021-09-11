@@ -136,7 +136,7 @@ jobs:
       run: |  
         & dotnet tool install --global NugetUnlister
         $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } -ExpandProperty Name -First 1 | Select-String -Pattern "\d[\d\w\.\+-]+(?=.nupkg)" | %{$_.Matches.Value}
-        & nuget-unlist drop prereleasebefore Amusoft.XUnit.NLog.Extensions $packageVersion $NUGETKEY
+        & nuget-unlist drop prereleasebefore Amusoft.XUnit.NLog.Extensions $packageVersion $env:NUGETKEY
               
     - name: Release
       if: ${{ needs.environment.outputs.publishRelease == 'True' }}
