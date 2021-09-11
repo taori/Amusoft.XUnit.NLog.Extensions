@@ -121,7 +121,7 @@ jobs:
       
     - name: Pack
       if: ${{ needs.environment.outputs.publishRelease == 'True' }}
-      run: dotnet pack src/Amusoft.XUnit.NLog.Extensions/Amusoft.XUnit.NLog.Extensions.csproj --verbosity $verbosity -c $configuration -o artifacts/nupkg --no-build /p:VersionSuffix=$versionSuffix
+      run: dotnet pack src/Amusoft.XUnit.NLog.Extensions/Amusoft.XUnit.NLog.Extensions.csproj --verbosity $verbosity -c $configuration -o artifacts/nupkg --no-build /p:VersionSuffix=$versionSuffix -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
     - name: Release
       if: ${{ needs.environment.outputs.publishRelease == 'True' }}
