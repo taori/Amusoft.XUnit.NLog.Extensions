@@ -6,7 +6,8 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
-	<ItemGroup>
+	<ItemGroup>		
+ 		<SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
 	</ItemGroup>
 
