@@ -13,6 +13,7 @@
 		<Authors>Andreas Müller</Authors>
 		<Product>Amusoft.XUnit.NLog.Extensions</Product>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/taori/Amusoft.XUnit.NLog.Extensions.git</RepositoryUrl>
