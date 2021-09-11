@@ -9,7 +9,7 @@
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 
 		<!-- Recommended: Embed symbols containing Source Link in the main file (exe/dll) -->
-		<DebugType>portable</DebugType>
+		<DebugType>embedded</DebugType>
 
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
