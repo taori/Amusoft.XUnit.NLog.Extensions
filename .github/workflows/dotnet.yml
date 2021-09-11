@@ -125,6 +125,7 @@ jobs:
 
     - name: Release
       if: ${{ needs.environment.outputs.publishRelease == 'True' }}
-      run: dotnet nuget push "artifacts/nupkg/*.nupkg" -k $NUGETKEY -s https://api.nuget.org/v3/index.json --no-symbols true
+      run: Get-ChildItem "artifacts/nupkg" -Filter "*.nupkg" | Foreach { dotnet nuget push $_.FullName -k $NUGETKEY -s https://api.nuget.org/v3/index.json --no-symbols true }
+      #run: dotnet nuget push "artifacts/nupkg/*.nupkg" -k $NUGETKEY -s https://api.nuget.org/v3/index.json --no-symbols true
       env:
         NUGETKEY: ${{ secrets.NUGET }}
