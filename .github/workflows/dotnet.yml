@@ -131,6 +131,8 @@ jobs:
       if: ${{ needs.environment.outputs.publishRelease == 'True' && github.event_name =='workflow_dispatch' && needs.environment.outputs.versionSuffix == ''}}
       id: defaults
       shell: pwsh
+      env:
+        NUGETKEY: ${{ secrets.NUGET }}
       run: |  
         & dotnet tool install --global NugetUnlister
         $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } -ExpandProperty Name -First 1 | Select-String -Pattern "\d[\d\w\.\+-]+(?=.nupkg)" | %{$_.Matches.Value}
