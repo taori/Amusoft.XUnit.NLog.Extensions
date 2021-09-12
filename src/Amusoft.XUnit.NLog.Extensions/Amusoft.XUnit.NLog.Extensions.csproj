@@ -25,6 +25,10 @@
 	<PropertyGroup>
 		<IsTestProject>false</IsTestProject>
 	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="packageIcon.png" Pack="true" PackagePath=""/>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="NLog" Version="4.7.0" />
