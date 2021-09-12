@@ -14,6 +14,7 @@
 		<Product>Amusoft.XUnit.NLog.Extensions</Product>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<PackageIcon>packageIcon.png</PackageIcon>
 
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/taori/Amusoft.XUnit.NLog.Extensions.git</RepositoryUrl>
