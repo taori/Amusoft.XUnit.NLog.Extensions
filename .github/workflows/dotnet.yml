@@ -114,7 +114,7 @@ jobs:
           #   key name                workflow value                                  fallback value
           $values = @(
               @("versionSuffix",      "$suffix",                                      "$suffix"),
-              @("versionPrefix",      "${{github.event.inputs.versionPrefix}}",       ""),
+              @("versionPrefix",      "${{github.event.inputs.versionPrefix}}",       "alpha"),
               @("configuration",      "${{github.event.inputs.configuration}}",       "Release"),
               @("verbosity",          "${{github.event.inputs.verbosity}}",           "minimal"),
               @("publish",            "${{github.event.inputs.publish}}",             "true"),
