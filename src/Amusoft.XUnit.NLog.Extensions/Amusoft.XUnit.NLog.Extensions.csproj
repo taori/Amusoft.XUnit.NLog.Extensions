@@ -2,12 +2,12 @@
 
 	<PropertyGroup>
 
-		<TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
-		<VersionPrefix>2.4.5</VersionPrefix>
+		<TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
+		<VersionPrefix>2.4.6</VersionPrefix>
 		<VersionSuffix>beta</VersionSuffix>
 		<IsPackable>true</IsPackable>
 
-		<Copyright>Copyright © Andreas Müller 2021</Copyright>
+		<Copyright>Copyright © Andreas Müller 2024</Copyright>
 		<Description>Extensions for tests when using xunit</Description>
 		<PackageId>Amusoft.XUnit.NLog.Extensions</PackageId>
 		<Authors>Andreas Müller</Authors>
@@ -31,7 +31,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NLog" Version="4.7.0" />
-		<PackageReference Include="xunit" Version="2.4.0" />
+		<PackageReference Include="NLog" Version="[4.7.0,)" />
+		<PackageReference Include="xunit" Version="[2.4.0,)" />
 	</ItemGroup>
 </Project>
