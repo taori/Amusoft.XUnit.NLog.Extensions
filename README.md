@@ -38,7 +38,15 @@ you will now receive log output from your actual library classes
 [![NuGet version (Amusoft.XUnit.NLog.Extensions)](https://img.shields.io/nuget/v/Amusoft.XUnit.NLog.Extensions.svg)](https://www.nuget.org/packages/Amusoft.XUnit.NLog.Extensions/)
 
 <!--CoverageStart-->
+![Code Coverage](https://img.shields.io/badge/Code%20Coverage-100%25-success?style=flat)
 
+Package | Line Rate | Branch Rate | Health
+-------- | --------- | ----------- | ------
+Amusoft.XUnit.NLog.Extensions | 100% | 100% | ✔
+**Summary** | **100%** (6 / 6) | **100%** (0 / 0) | ✔
 
+_Minimum allowed line rate is 85%_
+
+[Coverage details](https://taori.github.io/Amusoft.XUnit.NLog.Extensions)
 <!--CoverageEnd-->
 
