@@ -14,7 +14,6 @@
 		<Product>Amusoft.XUnit.NLog.Extensions</Product>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
-		<PackageIcon>packageIcon.png</PackageIcon>
 
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/taori/Amusoft.XUnit.NLog.Extensions.git</RepositoryUrl>
@@ -25,7 +24,16 @@
 	<PropertyGroup>
 		<IsTestProject>false</IsTestProject>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageIcon>Resources\packageIcon.png</PackageIcon>
+		<PackageReadmeFile>Resources\README.md</PackageReadmeFile>
+	</PropertyGroup>
 	
+	<ItemGroup Condition="'$(IsPackable)' == 'True'">
+		<None Include="..\..\README.md" Pack="True" PackagePath="\Resources"/>
+		<None Include="packageIcon.png" Pack="True" PackagePath="\Resources"/>
+	</ItemGroup>
 	<ItemGroup>
 		<None Include="packageIcon.png" Pack="true" PackagePath=""/>
 	</ItemGroup>
